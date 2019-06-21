@@ -23,7 +23,7 @@
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
-
+#include "led.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -96,12 +96,36 @@ int main(void)
   /* USER CODE BEGIN WHILE */
   while (1)
   {
-		HAL_Delay(1000);
-		HAL_GPIO_TogglePin(LED_B_GPIO_Port, LED_B_Pin);
-		HAL_Delay(1000);
-		HAL_GPIO_TogglePin(LED_G_GPIO_Port, LED_G_Pin);
-		HAL_Delay(1000);
-		HAL_GPIO_TogglePin(LED_R_GPIO_Port, LED_R_Pin);
+    HAL_Delay(1000);
+    led_on(LED_R);
+      
+    HAL_Delay(1000);
+    led_on(LED_G);
+      
+    HAL_Delay(1000);
+    led_on(LED_B);
+      
+    HAL_Delay(1000);
+    led_off(LED_R);
+      
+    HAL_Delay(1000);
+    led_off(LED_G);
+      
+    HAL_Delay(1000);
+    led_off(LED_B);
+      
+    HAL_Delay(1000);
+    
+    led_toggle(LED_R);
+    led_toggle(LED_G);
+    led_toggle(LED_B);
+    
+    HAL_Delay(1000);
+    
+    led_toggle(LED_R);
+    led_toggle(LED_G);
+    led_toggle(LED_B);
+    
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
