@@ -1,0 +1,9 @@
+*.uvguix.*
+*.uvoptx
+
+./RTE/*
+./pandora/*
+./DebugConfig/*
+
+*.crf
+*.o
