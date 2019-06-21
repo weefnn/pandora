@@ -1,10 +1,9 @@
 *.uvguix.*
 *.uvoptx
 
-./RTE/
-./pandora/
-./DebugConfig/
+RTE/
 pandora/
+DebugConfig/
 
 *.crf
 *.o
