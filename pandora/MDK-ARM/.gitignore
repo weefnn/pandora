@@ -4,6 +4,7 @@
 ./RTE/
 ./pandora/
 ./DebugConfig/
+pandora/
 
 *.crf
 *.o
