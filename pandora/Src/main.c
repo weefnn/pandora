@@ -125,6 +125,8 @@ int main(void)
     led_toggle(LED_R);
     led_toggle(LED_G);
     led_toggle(LED_B);
+
+    //TODO: BUTTON Exit
     
     /* USER CODE END WHILE */
 
