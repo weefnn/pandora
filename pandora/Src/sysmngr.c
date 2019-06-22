@@ -15,7 +15,7 @@ uint8_t *pBufferReadyForReception;
 
 extern UART_HandleTypeDef huart1;
 extern IWDG_HandleTypeDef hiwdg;
-
+extern TIM_HandleTypeDef htim3;
 
 
 
@@ -44,6 +44,9 @@ void usr_system_init(void)
     
     printf("Hello pandora.\n\r");
     printf("a=%d, b=%03d, c=%c, d=%f\n\r", 1,2,'a',3.14);
+    
+    HAL_TIM_Base_Start_IT(&htim3);
+    //HAL_TIM_Base_Start(&htim3);
 }
 
 void usr_system_ctrl_manager(void)
@@ -132,5 +135,13 @@ void USART1_IRQHandler(void)
   {
     UART_Error_Callback();
   }
+}
+
+void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
+{
+    if (htim->Instance == TIM3)
+    {
+        led_toggle(LED_B);
+    }
 }
 
