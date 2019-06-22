@@ -78,6 +78,10 @@ void Error_Handler(void);
 #define KEY0_Pin GPIO_PIN_10
 #define KEY0_GPIO_Port GPIOD
 #define KEY0_EXTI_IRQn EXTI15_10_IRQn
+#define Tx_Pin GPIO_PIN_9
+#define Tx_GPIO_Port GPIOA
+#define Rx_Pin GPIO_PIN_10
+#define Rx_GPIO_Port GPIOA
 /* USER CODE BEGIN Private defines */
 
 /* USER CODE END Private defines */
