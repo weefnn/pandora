@@ -23,7 +23,7 @@
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
-#include "led.h"
+#include "sysmngr.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -89,43 +89,14 @@ int main(void)
   /* Initialize all configured peripherals */
   MX_GPIO_Init();
   /* USER CODE BEGIN 2 */
-
+  usr_system_init();
   /* USER CODE END 2 */
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
   while (1)
   {
-    HAL_Delay(1000);
-    led_on(LED_R);
-      
-    HAL_Delay(1000);
-    led_on(LED_G);
-      
-    HAL_Delay(1000);
-    led_on(LED_B);
-      
-    HAL_Delay(1000);
-    led_off(LED_R);
-      
-    HAL_Delay(1000);
-    led_off(LED_G);
-      
-    HAL_Delay(1000);
-    led_off(LED_B);
-      
-    HAL_Delay(1000);
-    
-    led_toggle(LED_R);
-    led_toggle(LED_G);
-    led_toggle(LED_B);
-    
-    HAL_Delay(1000);
-    
-    led_toggle(LED_R);
-    led_toggle(LED_G);
-    led_toggle(LED_B);
-
+    usr_system_ctrl_manager();
     //TODO: BUTTON Exit
     
     /* USER CODE END WHILE */
@@ -192,8 +163,12 @@ static void MX_GPIO_Init(void)
   /* GPIO Ports Clock Enable */
   __HAL_RCC_GPIOC_CLK_ENABLE();
   __HAL_RCC_GPIOH_CLK_ENABLE();
+  __HAL_RCC_GPIOB_CLK_ENABLE();
   __HAL_RCC_GPIOE_CLK_ENABLE();
   __HAL_RCC_GPIOD_CLK_ENABLE();
+
+  /*Configure GPIO pin Output Level */
+  HAL_GPIO_WritePin(BEEP_GPIO_Port, BEEP_Pin, GPIO_PIN_RESET);
 
   /*Configure GPIO pin Output Level */
   HAL_GPIO_WritePin(GPIOE, LED_R_Pin|LED_G_Pin|LED_B_Pin, GPIO_PIN_SET);
@@ -203,6 +178,13 @@ static void MX_GPIO_Init(void)
   GPIO_InitStruct.Mode = GPIO_MODE_IT_RISING;
   GPIO_InitStruct.Pull = GPIO_PULLDOWN;
   HAL_GPIO_Init(WK_UP_GPIO_Port, &GPIO_InitStruct);
+
+  /*Configure GPIO pin : BEEP_Pin */
+  GPIO_InitStruct.Pin = BEEP_Pin;
+  GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
+  GPIO_InitStruct.Pull = GPIO_PULLDOWN;
+  GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
+  HAL_GPIO_Init(BEEP_GPIO_Port, &GPIO_InitStruct);
 
   /*Configure GPIO pins : LED_R_Pin LED_G_Pin LED_B_Pin */
   GPIO_InitStruct.Pin = LED_R_Pin|LED_G_Pin|LED_B_Pin;

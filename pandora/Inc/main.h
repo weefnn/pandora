@@ -61,6 +61,8 @@ void Error_Handler(void);
 #define WK_UP_Pin GPIO_PIN_13
 #define WK_UP_GPIO_Port GPIOC
 #define WK_UP_EXTI_IRQn EXTI15_10_IRQn
+#define BEEP_Pin GPIO_PIN_2
+#define BEEP_GPIO_Port GPIOB
 #define LED_R_Pin GPIO_PIN_7
 #define LED_R_GPIO_Port GPIOE
 #define LED_G_Pin GPIO_PIN_8

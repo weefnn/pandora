@@ -5,15 +5,25 @@
 
 typedef enum _ENUM_LED
 {
-	LED_R,
-	LED_G,
-	LED_B,
+    LED_R,
+    LED_G,
+    LED_B,
 }E_LED;
+
+typedef enum _DEVICE_ON_OFF
+{
+    ON,
+    OFF,
+}E_ON_OFF;
+
+
 
 
 void led_on(E_LED led);
 void led_off(E_LED led);
 void led_toggle(E_LED led);
+
+void beep(E_ON_OFF state);
 
 
 
