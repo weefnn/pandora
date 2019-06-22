@@ -14,6 +14,12 @@ uint8_t *pBufferReadyForReception;
 #define PUTCHAR_PROTOTYPE int fputc(int ch, FILE *f)
 
 extern UART_HandleTypeDef huart1;
+extern IWDG_HandleTypeDef hiwdg;
+
+
+
+
+
 PUTCHAR_PROTOTYPE
 {
   /* Place your implementation of fputc here */
@@ -48,6 +54,7 @@ void usr_system_ctrl_manager(void)
         {
             led_toggle(LED_R);
             beep(OFF);
+            HAL_IWDG_Refresh(&hiwdg);
         }
         if (button_pressed&KEY1_PRESSED)
         {
@@ -65,6 +72,9 @@ void usr_system_ctrl_manager(void)
         
         button_pressed = 0;
     }
+    
+    HAL_Delay(3000);
+    HAL_IWDG_Refresh(&hiwdg);
 
     if (uwBufferReadyIndication == 1)
     {
