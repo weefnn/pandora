@@ -621,6 +621,16 @@ void LCD_Show_Image(u16 x, u16 y, u16 width, u16 height, const u8 *p)
     LCD_SPI_Send((u8 *)p, width * height * 2);
 }
 
+void LCD_Send_Data(u16 x, u16 y, u16 x_end, u16 y_end, u8 *p)
+{
+    
+    LCD_Address_Set(x, y, x_end, y_end);
+
+    LCD_DC(1);
+
+    LCD_SPI_Send((u8 *)p, (x_end - x + 1) * (y_end - y + 1) * 2);
+}
+
 /**
  * @brief	LCD≥ı ºªØ
  *

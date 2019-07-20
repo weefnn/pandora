@@ -24,6 +24,12 @@
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
 #include "lcd.h"
+#include "lvgl/lvgl.h"
+
+#include "hal_stm_lvgl/tft/tft.h"
+#include "hal_stm_lvgl/touchpad/touchpad.h"
+
+#include "lv_examples/lv_apps/demo/demo.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -93,17 +99,24 @@ int main(void)
   MX_SPI3_Init();
   /* USER CODE BEGIN 2 */
   LCD_Init();
+  lv_init();
+  tft_init();
+  touchpad_init();
+
+  demo_create();
   /* USER CODE END 2 */
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
     Display_ALIENTEK_LOGO(0, 0);
-    POINT_COLOR = RED;
-    BACK_COLOR = WHITE;
-    LCD_ShowString(0, 100, 240, 32, 32, "Pandora STM32L4");
-    LCD_ShowString(0, 140, 240, 24, 24, "TFTLCD TEST 240*240");
+//    POINT_COLOR = RED;
+//    BACK_COLOR = WHITE;
+//    LCD_ShowString(0, 100, 240, 32, 32, "Pandora STM32L4");
+//    LCD_ShowString(0, 140, 240, 24, 24, "TFTLCD TEST 240*240");
   while (1)
   {
+      HAL_Delay(1);
+      lv_task_handler();
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */

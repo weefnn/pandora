@@ -53,3 +53,10 @@ dkms.conf
 
 .vscode/
 *.vscode*
+
+*.crf
+*.dep
+*.htm
+*.uvguix.*
+*.uvoptx
+*.uvprojx
