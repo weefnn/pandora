@@ -62,12 +62,9 @@ tags
 # VSCode config files
 .vscode
 
-# Others
-/RTL8762C/sdk/board/evb/wristband/*.uvprotx
-
-/RTL8762C/sdk/board/evb/wristband/*.uvprojx
-/wristband.uvprojx - 快捷方式.lnk
-/RTL8762C/sdk/board/evb/wristband/wristband.uvprojx
-/RTL8762C/sdk/board/evb/wristband/*.uvoptx
-/RTL8762C/sdk/board/evb/wristband/wristband.uvoptx
+*.crf
+*.dep
+*.htm
+*.uvguix.*
+*.uvoptx
 *.uvprojx

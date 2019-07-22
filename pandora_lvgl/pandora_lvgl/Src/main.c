@@ -118,10 +118,10 @@ int main(void)
 #endif
   /*demo or test case create*/
   //lv_test_group_1();
-  //demo_create();
+  demo_create();
   //sysmon_create();
-  extern void lv_tutorial_themes(void);
-  lv_tutorial_themes();
+  //extern void lv_tutorial_themes(void);
+  //lv_tutorial_themes();
   //benchmark_create();
   /* USER CODE END 2 */
 
