@@ -110,8 +110,12 @@
 "pandora_lvgl\img_bubble_pattern.o"
 "pandora_lvgl\benchmark.o"
 "pandora_lvgl\benchmark_bg.o"
+"pandora_lvgl\lv_test_group.o"
+"pandora_lvgl\imgbtn_img_1.o"
+"pandora_lvgl\imgbtn_img_2.o"
 "pandora_lvgl\tft.o"
-"pandora_lvgl\touchpad.o"
+"pandora_lvgl\button.o"
+"pandora_lvgl\keypad.o"
 --library_type=microlib --strict --scatter "pandora_lvgl\pandora_lvgl.sct"
 --summary_stderr --info summarysizes --map --load_addr_map_info --xref --callgraph --symbols
 --info sizes --info totals --info unused --info veneers

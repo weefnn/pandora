@@ -1,6 +1,5 @@
 #include "lcd.h"
 #include "font.h"
-//#include "spi3.h"
 #include "alientek_log.h"
 
 //LCD缓存大小设置，修改此值时请注意！！！！修改这两个值时可能会影响以下函数	LCD_Clear/LCD_Fill/LCD_DrawLine
@@ -27,8 +26,6 @@ static void LCD_Gpio_Init(void)
     LCD_RST(0);
     HAL_Delay(120);
     LCD_RST(1);
-
-    //SPI3_Init();	//初始化SPI3接口
 }
 
 
@@ -623,12 +620,23 @@ void LCD_Show_Image(u16 x, u16 y, u16 width, u16 height, const u8 *p)
 
 void LCD_Send_Data(u16 x, u16 y, u16 x_end, u16 y_end, u8 *p)
 {
-    
     LCD_Address_Set(x, y, x_end, y_end);
 
     LCD_DC(1);
 
     LCD_SPI_Send((u8 *)p, (x_end - x + 1) * (y_end - y + 1) * 2);
+}
+
+void LCD_Send_Data_DMA(u16 x, u16 y, u16 x_end, u16 y_end, u8 *p)
+{
+    LCD_Address_Set(x, y, x_end, y_end);
+
+    LCD_DC(1);
+
+    if ( HAL_SPI_Transmit_DMA(&hspi3, (uint8_t *)p, (x_end - x + 1) * (y_end - y + 1) * 2) != HAL_OK)
+    {
+        //while(1);	/*Halt on error*/
+    }
 }
 
 /**

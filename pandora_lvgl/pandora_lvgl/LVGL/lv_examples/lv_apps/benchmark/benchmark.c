@@ -54,7 +54,11 @@ LV_IMG_DECLARE(benchmark_bg)
 /**********************
  *      MACROS
  **********************/
-
+ #define PHIL_USE_KAYPAD 1
+#if PHIL_USE_KAYPAD
+    extern lv_indev_t * indev_keypad;
+    static lv_group_t * group;
+#endif
 /**********************
  *   GLOBAL FUNCTIONS
  **********************/
@@ -129,11 +133,16 @@ void benchmark_create(void)
     lv_btn_set_style(btn, LV_BTN_STYLE_TGL_PR, &style_btn_tgl_pr);
     lv_obj_set_event_cb(btn, run_test_event_cb);
 
+
     lv_obj_t * btn_l;
     btn_l = lv_label_create(btn, NULL);
     lv_label_set_text(btn_l, "Run\ntest!");
     lv_obj_set_protect(btn, LV_PROTECT_FOLLOW);     /*Line break in layout*/
-
+#if PHIL_USE_KAYPAD
+    group = lv_group_create();
+    lv_indev_set_group(indev_keypad, group);
+    lv_group_add_obj(group, btn);
+#endif
 
     /*Create a "Wallpaper show" button*/
     btn = lv_btn_create(holder_page, btn);
@@ -142,6 +151,9 @@ void benchmark_create(void)
     lv_obj_set_event_cb(btn, wp_btn_event_cb);
     btn_l = lv_label_create(btn, btn_l);
     lv_label_set_text(btn_l, "Wallpaper");
+#if PHIL_USE_KAYPAD
+    lv_group_add_obj(group, btn);
+#endif
 
 
     /*Create a "Wallpaper re-color" button*/
@@ -149,18 +161,27 @@ void benchmark_create(void)
     lv_obj_set_event_cb(btn, recolor_btn_event_cb);
     btn_l = lv_label_create(btn, btn_l);
     lv_label_set_text(btn_l, "Wp. recolor!");
+#if PHIL_USE_KAYPAD
+    lv_group_add_obj(group, btn);
+#endif
 
     /*Create a "Shadow draw" button*/
     btn = lv_btn_create(holder_page, btn);
     lv_obj_set_event_cb(btn, shadow_btn_event_cb);
     btn_l = lv_label_create(btn, btn_l);
     lv_label_set_text(btn_l, "Shadow");
+#if PHIL_USE_KAYPAD
+    lv_group_add_obj(group, btn);
+#endif
 
     /*Create an "Opacity enable" button*/
     btn = lv_btn_create(holder_page, btn);
     lv_obj_set_event_cb(btn, opa_btn_event_cb);
     btn_l = lv_label_create(btn, btn_l);
     lv_label_set_text(btn_l, "Opacity");
+#if PHIL_USE_KAYPAD
+    lv_group_add_obj(group, btn);
+#endif
 }
 
 

@@ -27,9 +27,12 @@
 #include "lvgl/lvgl.h"
 
 #include "hal_stm_lvgl/tft/tft.h"
-#include "hal_stm_lvgl/touchpad/touchpad.h"
+#include "hal_stm_lvgl/button/button.h"
+#include "hal_stm_lvgl/keypad/keypad.h"
 
 #include "lv_examples/lv_apps/demo/demo.h"
+#include "lv_examples/lv_apps/benchmark/benchmark.h"
+#include "lv_examples/lv_tests/lv_test_group/lv_test_group.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -49,6 +52,7 @@
 
 /* Private variables ---------------------------------------------------------*/
 SPI_HandleTypeDef hspi3;
+DMA_HandleTypeDef hdma_spi3_tx;
 
 /* USER CODE BEGIN PV */
 
@@ -57,6 +61,7 @@ SPI_HandleTypeDef hspi3;
 /* Private function prototypes -----------------------------------------------*/
 void SystemClock_Config(void);
 static void MX_GPIO_Init(void);
+static void MX_DMA_Init(void);
 static void MX_SPI3_Init(void);
 /* USER CODE BEGIN PFP */
 
@@ -96,23 +101,28 @@ int main(void)
 
   /* Initialize all configured peripherals */
   MX_GPIO_Init();
+  MX_DMA_Init();
   MX_SPI3_Init();
   /* USER CODE BEGIN 2 */
   LCD_Init();
   lv_init();
   tft_init();
-  touchpad_init();
-
+  
+  /*input device init*/
+#if USE_KEYPAD
+  extern  void keypad_init(void);
+  keypad_init();
+#else
+  button_init();
+#endif
+  /*demo or test case create*/
+  //lv_test_group_1();
   demo_create();
+  //benchmark_create();
   /* USER CODE END 2 */
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
-    Display_ALIENTEK_LOGO(0, 0);
-//    POINT_COLOR = RED;
-//    BACK_COLOR = WHITE;
-//    LCD_ShowString(0, 100, 240, 32, 32, "Pandora STM32L4");
-//    LCD_ShowString(0, 140, 240, 24, 24, "TFTLCD TEST 240*240");
   while (1)
   {
       HAL_Delay(1);
@@ -209,6 +219,21 @@ static void MX_SPI3_Init(void)
 
 }
 
+/** 
+  * Enable DMA controller clock
+  */
+static void MX_DMA_Init(void) 
+{
+  /* DMA controller clock enable */
+  __HAL_RCC_DMA2_CLK_ENABLE();
+
+  /* DMA interrupt init */
+  /* DMA2_Channel2_IRQn interrupt configuration */
+  HAL_NVIC_SetPriority(DMA2_Channel2_IRQn, 0, 0);
+  HAL_NVIC_EnableIRQ(DMA2_Channel2_IRQn);
+
+}
+
 /**
   * @brief GPIO Initialization Function
   * @param None
@@ -219,15 +244,39 @@ static void MX_GPIO_Init(void)
   GPIO_InitTypeDef GPIO_InitStruct = {0};
 
   /* GPIO Ports Clock Enable */
+  __HAL_RCC_GPIOC_CLK_ENABLE();
   __HAL_RCC_GPIOH_CLK_ENABLE();
+  __HAL_RCC_GPIOE_CLK_ENABLE();
   __HAL_RCC_GPIOD_CLK_ENABLE();
   __HAL_RCC_GPIOB_CLK_ENABLE();
+
+  /*Configure GPIO pin Output Level */
+  HAL_GPIO_WritePin(GPIOE, LED_R_Pin|LED_G_Pin|LED_B_Pin, GPIO_PIN_SET);
 
   /*Configure GPIO pin Output Level */
   HAL_GPIO_WritePin(LCD_CS_GPIO_Port, LCD_CS_Pin, GPIO_PIN_SET);
 
   /*Configure GPIO pin Output Level */
   HAL_GPIO_WritePin(GPIOB, LCD_DC_Pin|LCD_RST_Pin|LCD_PWR_Pin, GPIO_PIN_SET);
+
+  /*Configure GPIO pin : WK_UP_Pin */
+  GPIO_InitStruct.Pin = WK_UP_Pin;
+  GPIO_InitStruct.Mode = GPIO_MODE_INPUT;
+  GPIO_InitStruct.Pull = GPIO_NOPULL;
+  HAL_GPIO_Init(WK_UP_GPIO_Port, &GPIO_InitStruct);
+
+  /*Configure GPIO pins : LED_R_Pin LED_G_Pin LED_B_Pin */
+  GPIO_InitStruct.Pin = LED_R_Pin|LED_G_Pin|LED_B_Pin;
+  GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
+  GPIO_InitStruct.Pull = GPIO_PULLUP;
+  GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_HIGH;
+  HAL_GPIO_Init(GPIOE, &GPIO_InitStruct);
+
+  /*Configure GPIO pins : KEY2_Pin KEY1_Pin KEY0_Pin */
+  GPIO_InitStruct.Pin = KEY2_Pin|KEY1_Pin|KEY0_Pin;
+  GPIO_InitStruct.Mode = GPIO_MODE_INPUT;
+  GPIO_InitStruct.Pull = GPIO_NOPULL;
+  HAL_GPIO_Init(GPIOD, &GPIO_InitStruct);
 
   /*Configure GPIO pin : LCD_CS_Pin */
   GPIO_InitStruct.Pin = LCD_CS_Pin;

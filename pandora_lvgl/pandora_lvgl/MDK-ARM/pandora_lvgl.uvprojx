@@ -338,7 +338,7 @@
               <MiscControls></MiscControls>
               <Define>USE_HAL_DRIVER,STM32L475xx,USE_HAL_DRIVER,STM32L475xx</Define>
               <Undefine></Undefine>
-              <IncludePath>../Inc;../Drivers/STM32L4xx_HAL_Driver/Inc;../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy;../Drivers/CMSIS/Device/ST/STM32L4xx/Include;../Drivers/CMSIS/Include;..\LCD;..\LVGL</IncludePath>
+              <IncludePath>../Inc;  ../Drivers/STM32L4xx_HAL_Driver/Inc;  ../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy;  ../Drivers/CMSIS/Device/ST/STM32L4xx/Include;  ../Drivers/CMSIS/Include;  ..\LCD;  ..\LVGL</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -967,6 +967,21 @@
               <FileType>1</FileType>
               <FilePath>..\LVGL\lv_examples\lv_apps\benchmark\benchmark_bg.c</FilePath>
             </File>
+            <File>
+              <FileName>lv_test_group.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\LVGL\lv_examples\lv_tests\lv_test_group\lv_test_group.c</FilePath>
+            </File>
+            <File>
+              <FileName>imgbtn_img_1.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\LVGL\lv_examples\lv_tests\lv_test_objx\lv_test_imgbtn\imgbtn_img_1.c</FilePath>
+            </File>
+            <File>
+              <FileName>imgbtn_img_2.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\LVGL\lv_examples\lv_tests\lv_test_objx\lv_test_imgbtn\imgbtn_img_2.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
@@ -978,9 +993,14 @@
               <FilePath>..\LVGL\hal_stm_lvgl\tft\tft.c</FilePath>
             </File>
             <File>
-              <FileName>touchpad.c</FileName>
+              <FileName>button.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\LVGL\hal_stm_lvgl\touchpad\touchpad.c</FilePath>
+              <FilePath>..\LVGL\hal_stm_lvgl\button\button.c</FilePath>
+            </File>
+            <File>
+              <FileName>keypad.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\LVGL\hal_stm_lvgl\keypad\keypad.c</FilePath>
             </File>
           </Files>
         </Group>

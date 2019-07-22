@@ -82,6 +82,8 @@ void LCD_Show_Image(u16 x, u16 y, u16 width, u16 height, const u8 *p);					//œ‘ 
 void Display_ALIENTEK_LOGO(u16 x,u16 y);												//œ‘ æALIENTEK LOGO
 
 void LCD_Send_Data(u16 x, u16 y, u16 x_end, u16 y_end, u8 *p);
+void LCD_Send_Data_DMA(u16 x, u16 y, u16 x_end, u16 y_end, u8 *p);
+
 #endif
 
 

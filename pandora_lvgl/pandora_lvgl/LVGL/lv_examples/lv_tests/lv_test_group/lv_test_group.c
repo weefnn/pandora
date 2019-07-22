@@ -52,7 +52,7 @@ static lv_obj_t * win;
 /**********************
  *      MACROS
  **********************/
-
+extern lv_indev_t * indev_keypad;
 /**********************
  *   GLOBAL FUNCTIONS
  **********************/
@@ -68,6 +68,7 @@ lv_group_t *lv_test_group_1(void)
     g = lv_group_create();
     lv_group_set_focus_cb(g, group_focus_cb);
 
+#if 1
     /*A keyboard will be simulated*/
     lv_indev_drv_t sim_kb_drv;
     lv_indev_drv_init(&sim_kb_drv);
@@ -75,7 +76,12 @@ lv_group_t *lv_test_group_1(void)
     sim_kb_drv.read_cb = win_btn_read;
     lv_indev_t * win_kb_indev = lv_indev_drv_register(&sim_kb_drv);
     lv_indev_set_group(win_kb_indev, g);
-
+#else
+    /*keypad test-- phil*/
+    //group = lv_group_create();
+    lv_indev_set_group(indev_keypad, g);
+#endif
+    
 #if LV_EX_KEYBOARD
     lv_indev_drv_t real_kb_drv;
     lv_indev_drv_init(&real_kb_drv);

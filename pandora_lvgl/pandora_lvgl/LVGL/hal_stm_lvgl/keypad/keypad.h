@@ -34,7 +34,7 @@ extern "C" {
 /**********************
  *      MACROS
  **********************/
-void touchpad_init(void);
+void keypad_init(void);
 
 #ifdef __cplusplus
 } /* extern "C" */
