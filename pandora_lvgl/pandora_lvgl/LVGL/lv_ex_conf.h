@@ -26,7 +26,7 @@
 /*******************
  * TUTORIAL USAGE
  *******************/
-#define LV_USE_TUTORIALS   0
+#define LV_USE_TUTORIALS   1
 
 
 /*********************
@@ -46,7 +46,7 @@
 #endif
 
 /*MCU and memory usage monitoring*/
-#define LV_USE_SYSMON      0
+#define LV_USE_SYSMON      1
 
 /*A terminal to display received characters*/
 #define LV_USE_TERMINAL    0

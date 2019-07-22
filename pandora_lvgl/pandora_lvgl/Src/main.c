@@ -32,6 +32,7 @@
 
 #include "lv_examples/lv_apps/demo/demo.h"
 #include "lv_examples/lv_apps/benchmark/benchmark.h"
+#include "lv_examples/lv_apps/sysmon/sysmon.h"
 #include "lv_examples/lv_tests/lv_test_group/lv_test_group.h"
 /* USER CODE END Includes */
 
@@ -117,7 +118,10 @@ int main(void)
 #endif
   /*demo or test case create*/
   //lv_test_group_1();
-  demo_create();
+  //demo_create();
+  //sysmon_create();
+  extern void lv_tutorial_themes(void);
+  lv_tutorial_themes();
   //benchmark_create();
   /* USER CODE END 2 */
 

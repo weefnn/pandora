@@ -32,7 +32,7 @@ extern "C" {
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
-#define USB_SPI_DMA 0
+#define USB_SPI_DMA 1
 #define USE_KEYPAD 0
 #if USE_KEYPAD
 #define USE_BUTTON 0

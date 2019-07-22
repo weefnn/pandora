@@ -1574,8 +1574,8 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>..\LVGL\lv_examples\lv_tests\lv_test_group\lv_test_group.c</PathWithFileName>
-      <FilenameWithoutPath>lv_test_group.c</FilenameWithoutPath>
+      <PathWithFileName>..\LVGL\lv_examples\lv_apps\sysmon\sysmon.c</PathWithFileName>
+      <FilenameWithoutPath>sysmon.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
     </File>
@@ -1586,8 +1586,8 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>..\LVGL\lv_examples\lv_tests\lv_test_objx\lv_test_imgbtn\imgbtn_img_1.c</PathWithFileName>
-      <FilenameWithoutPath>imgbtn_img_1.c</FilenameWithoutPath>
+      <PathWithFileName>..\LVGL\lv_examples\lv_tutorial\4_themes\lv_tutorial_themes.c</PathWithFileName>
+      <FilenameWithoutPath>lv_tutorial_themes.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
     </File>
@@ -1598,8 +1598,8 @@
       <tvExp>0</tvExp>
       <tvExpOptDlg>0</tvExpOptDlg>
       <bDave2>0</bDave2>
-      <PathWithFileName>..\LVGL\lv_examples\lv_tests\lv_test_objx\lv_test_imgbtn\imgbtn_img_2.c</PathWithFileName>
-      <FilenameWithoutPath>imgbtn_img_2.c</FilenameWithoutPath>
+      <PathWithFileName>..\LVGL\lv_examples\lv_tutorial\2_objects\lv_tutorial_objects.c</PathWithFileName>
+      <FilenameWithoutPath>lv_tutorial_objects.c</FilenameWithoutPath>
       <RteFlg>0</RteFlg>
       <bShared>0</bShared>
     </File>
