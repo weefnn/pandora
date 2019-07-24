@@ -59,9 +59,4 @@ dkms.conf
 *.htm
 *.uvguix.*
 *.uvoptx
-*.uvprojx
-pandora_lvgl/pandora_lvgl/MDK-ARM/pandora_lvgl.uvoptx
-pandora_lvgl/pandora_lvgl/MDK-ARM/pandora_lvgl.uvoptx
-pandora_lvgl/pandora_lvgl/MDK-ARM/pandora_lvgl.uvoptx
-pandora_lvgl/pandora_lvgl/MDK-ARM/pandora_lvgl.uvoptx
-pandora_lvgl/pandora_lvgl/MDK-ARM/pandora_lvgl.uvprojx
+
