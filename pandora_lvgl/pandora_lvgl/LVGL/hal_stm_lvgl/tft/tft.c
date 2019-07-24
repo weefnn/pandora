@@ -29,7 +29,7 @@ static void disp_flush(lv_disp_drv_t * disp_drv, const lv_area_t * area, lv_colo
 /**********************
  *  STATIC VARIABLES
  **********************/
-static lv_disp_drv_t disp_drv;                         /*Descriptor of a display driver*/
+static lv_disp_drv_t display_drv;                         /*Descriptor of a display driver*/
 /**********************
  *      MACROS
  **********************/
@@ -63,22 +63,22 @@ void tft_init(void)
     /*-----------------------------------
      * Register the display in LittlevGL
      *----------------------------------*/
-    lv_disp_drv_init(&disp_drv);                    /*Basic initialization*/
+    lv_disp_drv_init(&display_drv);                    /*Basic initialization*/
 
     /*Set up the functions to access to your display*/
 
     /*Set the resolution of the display*/
-    disp_drv.hor_res = 240;
-    disp_drv.ver_res = 240;
+    display_drv.hor_res = 240;
+    display_drv.ver_res = 240;
 
     /*Used to copy the buffer's content to the display*/
-    disp_drv.flush_cb = disp_flush;
+    display_drv.flush_cb = disp_flush;
 
     /*Set a display buffer*/
-    disp_drv.buffer = &disp_buf_2;
+    display_drv.buffer = &disp_buf_2;
 
     /*Finally register the driver*/
-    lv_disp_drv_register(&disp_drv);
+    lv_disp_drv_register(&display_drv);
 }
 
 /**********************
@@ -100,6 +100,7 @@ static void disp_flush(lv_disp_drv_t * disp_drv, const lv_area_t * area, lv_colo
 #if USB_SPI_DMA
     /*SPI transmit data with DMA*/
     LCD_Send_Data_DMA(area->x1, area->y1, area->x2, area->y2, (uint8_t *)color_p);
+    memcpy(&display_drv, disp_drv, sizeof(lv_disp_drv_t));
 #else
     LCD_Send_Data(area->x1, area->y1, area->x2, area->y2, (uint8_t *)color_p);
     lv_disp_flush_ready(disp_drv);
@@ -109,7 +110,7 @@ static void disp_flush(lv_disp_drv_t * disp_drv, const lv_area_t * area, lv_colo
 #if USB_SPI_DMA
 void HAL_SPI_TxCpltCallback(SPI_HandleTypeDef *hspi)
 {
-    lv_disp_flush_ready(&disp_drv);
+    lv_disp_flush_ready(&display_drv);
 }
 
 void HAL_SPI_ErrorCallback(SPI_HandleTypeDef *hspi)
