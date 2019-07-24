@@ -74,6 +74,10 @@ void Error_Handler(void);
 #define KEY1_GPIO_Port GPIOD
 #define KEY0_Pin GPIO_PIN_10
 #define KEY0_GPIO_Port GPIOD
+#define Tx_Pin GPIO_PIN_9
+#define Tx_GPIO_Port GPIOA
+#define Rx_Pin GPIO_PIN_10
+#define Rx_GPIO_Port GPIOA
 #define LCD_CS_Pin GPIO_PIN_7
 #define LCD_CS_GPIO_Port GPIOD
 #define LCD_DC_Pin GPIO_PIN_4

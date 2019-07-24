@@ -757,7 +757,6 @@ void LCD_Init(void)
     LCD_Write_Cmd(0x29);
 
     LCD_Address_Set(0, 0, LCD_Width - 1, LCD_Height - 1);
-
     LCD_Clear(WHITE);
 
     /*´ò¿ªÏÔÊ¾*/

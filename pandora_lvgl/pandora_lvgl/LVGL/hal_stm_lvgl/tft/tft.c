@@ -30,6 +30,9 @@ static void disp_flush(lv_disp_drv_t * disp_drv, const lv_area_t * area, lv_colo
  *  STATIC VARIABLES
  **********************/
 static lv_disp_drv_t display_drv;                         /*Descriptor of a display driver*/
+#if USB_SPI_DMA
+static lv_disp_drv_t * disp_p;
+#endif
 /**********************
  *      MACROS
  **********************/
@@ -100,7 +103,7 @@ static void disp_flush(lv_disp_drv_t * disp_drv, const lv_area_t * area, lv_colo
 #if USB_SPI_DMA
     /*SPI transmit data with DMA*/
     LCD_Send_Data_DMA(area->x1, area->y1, area->x2, area->y2, (uint8_t *)color_p);
-    memcpy(&display_drv, disp_drv, sizeof(lv_disp_drv_t));
+    disp_p = disp_drv;
 #else
     LCD_Send_Data(area->x1, area->y1, area->x2, area->y2, (uint8_t *)color_p);
     lv_disp_flush_ready(disp_drv);
@@ -110,7 +113,7 @@ static void disp_flush(lv_disp_drv_t * disp_drv, const lv_area_t * area, lv_colo
 #if USB_SPI_DMA
 void HAL_SPI_TxCpltCallback(SPI_HandleTypeDef *hspi)
 {
-    lv_disp_flush_ready(&display_drv);
+    lv_disp_flush_ready(disp_p);
 }
 
 void HAL_SPI_ErrorCallback(SPI_HandleTypeDef *hspi)

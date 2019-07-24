@@ -24,7 +24,6 @@
  *  STATIC PROTOTYPES
  **********************/
 
-//static void keypad_init(void);
 static bool keypad_read(lv_indev_drv_t * indev_drv, lv_indev_data_t * data);
 static uint32_t keypad_get_key(void);
 
@@ -58,10 +57,6 @@ void keypad_init(void)
     /*------------------
      * Keypad
      * -----------------*/
-
-    /*Initialize your keypad or keyboard if you have*/
-    //keypad_init();
-
     /*Register a keypad input device*/
     lv_indev_drv_init(&indev_drv);
     indev_drv.type = LV_INDEV_TYPE_KEYPAD;
@@ -84,13 +79,6 @@ void keypad_init(void)
 /*------------------
  * Keypad
  * -----------------*/
-
-///* Initialize your keypad */
-//static void keypad_init(void)
-//{
-//    /*Your code comes here*/
-//}
-
 /* Will be called by the library to read the mouse */
 static bool keypad_read(lv_indev_drv_t * indev_drv, lv_indev_data_t * data)
 {
