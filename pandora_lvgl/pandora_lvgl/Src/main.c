@@ -130,10 +130,18 @@ int main(void)
 #endif
   /*demo or test case create*/
   //lv_test_group_1();
-  demo_create();
+  //demo_create();
   //sysmon_create();
   //lv_tutorial_themes();
   //benchmark_create();
+//  extern void Layer_create(void);
+//  Layer_create();
+//  extern void Event_create(void);
+//  Event_create();
+  extern void Style_create(void);
+  Style_create();
+//  extern void theme_create(void);
+//  theme_create();
   /* USER CODE END 2 */
 
   /* Infinite loop */
