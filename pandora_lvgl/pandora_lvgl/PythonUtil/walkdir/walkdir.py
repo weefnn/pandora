@@ -1,3 +1,7 @@
+from PIL import Image as image
+from struct import *
+import sys
+import ntpath
 import os
 '''
 os.path.abspath(path) #返回绝对路径
@@ -32,38 +36,78 @@ os.path.splitunc(path)  #把路径分割为加载点与文件
 os.path.walk(path, visit, arg)  #遍历path，进入每个目录都调用visit函数，visit函数必须有3个参数(arg, dirname, names)，dirname表示当前目录的目录名，names代表当前目录下的所有文件名，args则为walk的第三个参数
 os.path.supports_unicode_filenames  #设置是否支持unicode路径名
 '''
-# for root, dirs, files in os.walk("."):
-    # for file in files:
-        # print(root) # get dir which file belong to 
+#os.path.exists(path)
+
+for root, dirs, files in os.walk("."):
+    for file in files:
+        if file == "walkdir.py":
+            continue
+        #print(root) # get dir which file belong to 
+        dir_name = root.replace("resource", "bin", 1)
+        if os.path.exists(dir_name) is False:
+            os.makedirs(dir_name) 
+            
         # print(os.path.join(root, file)) # get file path 
+        file_path = os.path.join(root, file)
+        # Open image
+        try:
+          img = image.open(file_path)
+        except IOError as ioe:
+          print ("---ERROR:", ioe )
+          print ("---ERROR: Try to convert the image to jpg format")
+          continue
+          
+        (w,h) = img.size 
+        data = list(img.getdata())
+        print ("Size: ",  w, "x", h)
+        
+        #Create the output bin file
+        target_file = "img_" + file.split('.')[0] + ".bin"
+        target_file_path = os.path.join(dir_name, target_file)
+        f_bin = open(target_file_path, 'wb')
+        
+        for px in data:
+            try:
+                r =  px[0] >> 3
+                g =  px[1] >> 2
+                b =  px[2] >> 3
+                px_out = (r << 11) + (g << 5) + b
+                px_out_msb = (px_out&0xFF) << 8 | px_out >> 8
+                f_bin.write(pack('<H', px_out_msb))
+            except TypeError as te:
+                print ("---ERROR:", te )
+                print ("---ERROR: Convert the image to jpg format and try again!")
+                exit()
+                
+        f_bin.close()
         
 # for root, dirs, files in os.walk("."):
     # for dir in dirs:
         # print(dir) # get dir name
         # print(os.path.join(root, dir)) # get path of dir 
         
-def get_file_path(root_path, file_list, dir_list):
-    # get all file names and dir names 
-    dir_or_files = os.listdir(root_path)
-    for dir_file in dir_or_files:
-        #get path of dir or file 
-        dir_file_path = os.path.join(root_path, dir_file)
-        #if os.path.isfile(dir_file_path):
-        if os.path.isdir(dir_file_path):
-            dir_list.append(dir_file_path)
-            # recursive calling
-            get_file_path(dir_file_path, file_list, dir_list)
-        else:
-            file_list.append(dir_file_path)
+# def get_file_path(root_path, file_list, dir_list):
+    # # get all file names and dir names 
+    # dir_or_files = os.listdir(root_path)
+    # for dir_file in dir_or_files:
+        # #get path of dir or file 
+        # dir_file_path = os.path.join(root_path, dir_file)
+        # #if os.path.isfile(dir_file_path):
+        # if os.path.isdir(dir_file_path):
+            # dir_list.append(dir_file_path)
+            # # recursive calling
+            # get_file_path(dir_file_path, file_list, dir_list)
+        # else:
+            # file_list.append(dir_file_path)
             
             
-if __name__ == "__main__":
-    #root path 
-    root_path = "."
-    file_list = []
-    dir_list = []
-    get_file_path(root_path, file_list, dir_list)
-    #print(file_list)
-    for item in file_list:
-        print(item)
-    #print(dir_list)
+# if __name__ == "__main__":
+    # #root path 
+    # root_path = "."
+    # file_list = []
+    # dir_list = []
+    # get_file_path(root_path, file_list, dir_list)
+    # #print(file_list)
+    # for item in file_list:
+        # print(item)
+    # #print(dir_list)
