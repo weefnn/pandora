@@ -5,14 +5,15 @@ import ntpath
 import os
 import click
 
-def del_file(path):
-    ls = os.listdir(path)
-    for i in ls:
-        c_path = os.path.join(path, i)
-        if os.path.isdir(c_path):
-            del_file(c_path)
-        else:
-            os.remove(c_path)
+def clean_dir(dir):
+    items = os.listdir(dir)
+    for item in items:
+        item_path = os.path.join(dir, item)
+        if os.path.isdir(item_path): #item is a dir
+            clean_dir(item_path)
+            os.rmdir(item_path)
+        else: # item is a file
+            os.remove(item_path)
             
 @click.command()
 @click.option('-d', '--dir', default="picture_resource", prompt='picture resource directory',
@@ -23,7 +24,7 @@ def conv_img2bin(dir):
     #create a directory to contain .bin files
     dir_name = ''.join([dir, "_bin"])
     if os.path.exists(dir_name) is True:
-        del_file(dir_name) # dir exit, delete all items in the folder
+        clean_dir(dir_name) # dir exit, delete all items in the folder
     else:
         os.makedirs(dir_name)  # dir not exit , create
     for root, dirs, files in os.walk(dir):
@@ -63,7 +64,7 @@ def conv_img2bin(dir):
 
     print("\n\t<<Generate user_data.bin and header info>>>")
     # if os.path.exists("./test") is True:
-        # del_file("./test") # dir exit, delete all items in the folder
+        # clean_dir("./test") # dir exit, delete all items in the folder
     # else:
         # os.makedirs("./test")  # dir not exit , create
         
