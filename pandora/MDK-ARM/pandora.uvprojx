@@ -10,7 +10,7 @@
       <TargetName>pandora</TargetName>
       <ToolsetNumber>0x4</ToolsetNumber>
       <ToolsetName>ARM-ADS</ToolsetName>
-      <pCCUsed>5060528::V5.06 update 5 (build 528)::ARMCC</pCCUsed>
+      <pCCUsed>5060750::V5.06 update 6 (build 750)::ARMCC</pCCUsed>
       <uAC6>0</uAC6>
       <TargetOption>
         <TargetCommonOption>
@@ -184,6 +184,7 @@
             <hadXRAM>0</hadXRAM>
             <uocXRam>0</uocXRam>
             <RvdsVP>2</RvdsVP>
+            <RvdsMve>0</RvdsMve>
             <hadIRAM2>1</hadIRAM2>
             <hadIROM2>0</hadIROM2>
             <StupSel>8</StupSel>
@@ -324,6 +325,7 @@
             <uThumb>0</uThumb>
             <uSurpInc>0</uSurpInc>
             <uC99>1</uC99>
+            <uGnu>0</uGnu>
             <useXO>0</useXO>
             <v6Lang>1</v6Lang>
             <v6LangP>1</v6LangP>
@@ -336,7 +338,7 @@
               <MiscControls></MiscControls>
               <Define>USE_HAL_DRIVER,STM32L475xx,USE_HAL_DRIVER,STM32L475xx</Define>
               <Undefine></Undefine>
-              <IncludePath>../Inc;           ../Drivers/STM32L4xx_HAL_Driver/Inc;           ../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy;           ../Drivers/CMSIS/Device/ST/STM32L4xx/Include;           ../Drivers/CMSIS/Include</IncludePath>
+              <IncludePath>../Inc;            ../Drivers/STM32L4xx_HAL_Driver/Inc;            ../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy;            ../Drivers/CMSIS/Device/ST/STM32L4xx/Include;            ../Drivers/CMSIS/Include</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -429,6 +431,16 @@
               <FileName>stm32l4xx_hal_iwdg.c</FileName>
               <FileType>1</FileType>
               <FilePath>../Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_iwdg.c</FilePath>
+            </File>
+            <File>
+              <FileName>stm32l4xx_hal_spi.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>../Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_spi.c</FilePath>
+            </File>
+            <File>
+              <FileName>stm32l4xx_hal_spi_ex.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>../Drivers/STM32L4xx_HAL_Driver/Src/stm32l4xx_hal_spi_ex.c</FilePath>
             </File>
             <File>
               <FileName>stm32l4xx_hal_tim.c</FileName>

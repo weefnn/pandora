@@ -69,6 +69,14 @@ void Error_Handler(void);
 #define LED_G_GPIO_Port GPIOE
 #define LED_B_Pin GPIO_PIN_9
 #define LED_B_GPIO_Port GPIOE
+#define SPI_SLAVE_CS_Pin GPIO_PIN_12
+#define SPI_SLAVE_CS_GPIO_Port GPIOB
+#define SPI_SLAVE_CLK_Pin GPIO_PIN_13
+#define SPI_SLAVE_CLK_GPIO_Port GPIOB
+#define SPI_SLAVE_MISO_Pin GPIO_PIN_14
+#define SPI_SLAVE_MISO_GPIO_Port GPIOB
+#define SPI_SLAVE_MOSI_Pin GPIO_PIN_15
+#define SPI_SLAVE_MOSI_GPIO_Port GPIOB
 #define KEY2_Pin GPIO_PIN_8
 #define KEY2_GPIO_Port GPIOD
 #define KEY2_EXTI_IRQn EXTI9_5_IRQn
